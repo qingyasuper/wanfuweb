@@ -1,0 +1,26 @@
+.main { width: 750px; font-size: 24px; }
+.main ul li { width: 80%; margin-left: 10%; height: 60px; line-height: 60px;}
+table,td { border: 1px solid #ddd}
+.main table { font-size: 20px; line-height: 60px; width: 100%; text-align: center;}
+.main input { padding: 3px;  border: 1px solid #000000}
+.main input.red { background: red; padding: 3px; color:#fff; border: 1px solid red}
+.f_div {display: none;position:  fixed;left:50%;top: 200px;width: 400px;margin-left: -200px;margin-top: -50px;height: 180px;border: 1px solid red;background: #fff;}
+.f_div ul li {width: 100px;height: 40px;line-height: 40px;float: left;border: 1px solid red;background: red;margin: 10px;color: #fff;font-size: 24px;text-align: center;}
+.f_div ul {margin: 20px 13px;}
+.f_div span {font-size: 30px;text-align: center;font-weight: bold;width: 100%;display: block;line-height: 67px;height: 50px;}
+.top { width: 750px;height: 100px; text-align: center}
+.top ul li {width: 120px;height: 40px;line-height: 40px;float: left;border: 1px solid red;background: red;margin: 10px;color: #fff;font-size: 24px;text-align: center;}
+.top ul {margin: 20px 13px;}
+.f_div_user { display:none; font-size:28px;line-height:50px;width: 80%;position: fixed;top:50%; margin-top:-480px;left:10%;height: 380px;background: #fff;border: 2px solid red;}
+.f_div_user ul li {width: 96%;height: 65px;line-height: 65px;float: left;border: 1px solid red;/* background: red; */margin: 10px;color: #080808;font-size: 32px;text-align: center;}
+.f_div_user ul li span {float: left;width: 150px;text-align: right;}
+.f_div_user ul li input {float: left;width: 383px;height: 65px;}
+.f_div_user ul li label {float: left;width: 128px;text-indent: 20px;margin-left: 20px;}
+.f_div_user ul li label input {float: left;width: 36px;}
+.f_div_user ul li label b {float: left;line-height: 60px;}
+
+.f_div_user ul li a {margin: 4%;width: 40%;height: 50px;line-height: 50px;display: block;background: red;color:#fff;float: left;}
+.xufei_div { height: 400px;}
+
+.main table b{font-weight:normal;padding: 3px;background: red;color: #fff;}
+
