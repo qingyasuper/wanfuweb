@@ -23,7 +23,7 @@
 
                 <tr v-for="(item,index) in list">
                     <td>{{index+1}}</td>
-                    <td class="xufei" data-id="{$vo.id}">{{item.username}}
+                    <td class="xufei" @click="add(item.id,item.username)">{{item.username}}
                         <b v-show="item.z1===1">1</b>
                         <b v-show="item.z2===1">2</b>
                         <b v-show="item.z3===1">3</b>
@@ -46,7 +46,7 @@
             </table>
         </div>
 
-        <div class="f_div" style="height: 260px;">
+        <div class="f_div" style="height: 260px;" v-show="divB">
             <span></span>
             <ul>
                 <li>九教室</li>
@@ -64,7 +64,7 @@
 
             </ul>
         </div>
-        <div class="f_div_user user">
+        <div class="f_div_user user" v-show="divA">
             <ul>
                 <li><span>姓名：</span><input type="text" class="username"></li>
                 <li><span>电话：</span><input type="tel" class="tel"></li>
@@ -101,12 +101,12 @@
             </ul>
         </div>
 
-        <div class="f_div_user xufei_div">
+        <div class="f_div_user" v-show="divC">
             <ul>
-                <li><span>姓名：</span><span class="u" data-id=""></span></li>
+                <li><span>姓名：</span><span class="u">{{username}}</span></li>
                 <li><span>课时：</span><input type="number" value="0" class="xu_ke"></li>
                 <li><span>金额：</span><input type="number" value="0" class="xu_jin"></li>
-                <li style="border: none"><a href="javascript:void(0);" class="but_xu">提交</a> <a href="javascript:void(0);" class="close" >关闭</a> </li>
+                <li style="border: none"><a href="javascript:void(0);" class="but_xu">提交</a> <a href="javascript:void(0);" class="close"  @click="close">关闭</a> </li>
             </ul>
         </div>
     </div>
@@ -120,6 +120,10 @@
                 name: '',
                 tel: '',
                 list:[],
+                divA:false,
+                divB:false,
+                divC:false,
+                username:'',
             }
         },
         mounted(){
@@ -137,12 +141,22 @@
                     console.log(res.detail);
                     if(res.detail==="登录成功"){
                         that.list = res.list;
-                        that.$router.push('/user')
                     }else{
                         that.$router.push('/login')
                     }
                 });
 
+            },
+            add(id,username){
+                let that = this;
+                console.log(id);
+                that.divC =true;
+                that.username =username;
+                console.log(that.divC);
+            },
+            close(){
+                let that = this;
+                that.divA = that.divB = that.divC =false;
             }
         }
     };
