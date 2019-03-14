@@ -2,11 +2,11 @@
     <div id="Index">
         <div class="top">
             <ul>
-                <a href="/wanfu"><li>全部</li></a>
-                <a href="?j=1"><li>九教室</li></a>
-                <a href="?j=2"><li>十教室</li></a>
-                <a href="?j=3"><li>关闭</li></a>
-                <a href="javascript:void(0);" class="openUser" ><li>新增</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(0)"><li>全部</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(1)"><li>九教室</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(2)"><li>十教室</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(3)"><li>关闭</li></a>
+                <a href="javascript:void(0);" @click="openAdd"><li>新增</li></a>
             </ul>
         </div>
         <div class="main">
@@ -36,7 +36,7 @@
                     </td>
                     <td><a href="tel:{$vo.tel}">{{item.tel}}</a> <b v-if="item.can==0">餐</b></td>
                     <td>{{item.num}}</td>
-                    <td class="jiao" data-id="{$vo.id}" data-name="item.username">{{item.jiaoshi}}</td>
+                    <td class="jiao"  @click="openClass(item.id,item.username)">{{item.jiaoshi}}</td>
                     <td>
                         <input v-show="item.qiandao===0" type="button" class="qian" value="未签到" data-id="item.id">
                         <input v-show="item.qiandao===1" type="button" class="wei red" value="已签到" data-id="item.id">
@@ -60,7 +60,7 @@
     margin-top: 15px;
     float: left;
     line-height: 40px;
-"><a href="javascript:void(0);" class="close" >关闭</a> </p>
+"><a href="javascript:void(0);" class="close" @click="close">关闭</a> </p>
 
             </ul>
         </div>
@@ -97,7 +97,7 @@
                 <!--<option>缴费</option>-->
                 <!--</select>-->
                 <!--</li>-->
-                <li style="border: none"><a href="javascript:void(0);" class="butUser">提交</a> <a href="javascript:void(0);" class="close" >关闭</a> </li>
+                <li style="border: none"><a href="javascript:void(0);" class="butUser">提交</a> <a href="javascript:void(0);" class="close" @click="close">关闭</a> </li>
             </ul>
         </div>
 
@@ -128,15 +128,14 @@
         },
         mounted(){
             let that = this;
-            that.checkLogin();
+            that.checkLogin(0);
 
         },
         methods:{
-            checkLogin(){
+            checkLogin(t){
                 let that = this;
                 that.$jsonp(that.Url +"wanfu/login/list", {
-                    username: that.name,
-                    password: that.tel
+                    t: t
                 }).then(function (res) {
                     console.log(res.detail);
                     if(res.detail==="登录成功"){
@@ -153,6 +152,15 @@
                 that.divC =true;
                 that.username =username;
                 console.log(that.divC);
+            },
+            openAdd(){
+                let that = this;
+                that.divA =true;
+
+            },
+            openClass(id,username){
+                let that = this;
+                that.divB =true;
             },
             close(){
                 let that = this;
