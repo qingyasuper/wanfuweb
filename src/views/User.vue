@@ -69,14 +69,14 @@
             },
             out(){
                 let that = this;
-                that.$jsonp(that.Url +"wanfu/login/out")
+                that.$jsonp(that.Url+"wanfu/login/out")
                     .then(function (res) {
-                        if(res.detail==="退出成功") {
+                        if(res.detail === "退出成功") {
                             that.$router.push('/login');
                         }
                     });
-                }
-        }
+                },
+        },
     }
 </script>
 

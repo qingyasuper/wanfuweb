@@ -1,7 +1,5 @@
 <template>
     <div id="Index">
-
-
     </div>
 </template>
 
@@ -23,10 +21,7 @@
         methods:{
             checkLogin(){
                 let that = this;
-                that.$jsonp(that.Url +"wanfu/login/list", {
-                    username: that.name,
-                    password: that.tel
-                }).then(function (res) {
+                that.$jsonp(that.Url +"wanfu/login/list").then(function (res) {
                     console.log(res.detail);
                     if(res.detail==="登录成功"){
                         that.list = res.list;
