@@ -4,10 +4,11 @@ import Index from './components/Index.vue';
 import Login from './views/Login.vue';
 import User from './views/User.vue';
 import Admin from './views/Admin.vue';
+import Pay from './views/Pay.vue';
 Vue.use(Router);
 
 export default new Router({
-//  mode: 'history',
+  mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
@@ -29,6 +30,11 @@ export default new Router({
       path: '/admin',
       name: 'admin',
       component: Admin,
+    },
+    {
+      path: '/pay',
+      name: 'pay',
+      component: Pay,
     },
     // {
     //   path: '/about',

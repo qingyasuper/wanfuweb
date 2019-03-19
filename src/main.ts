@@ -10,7 +10,7 @@ import VueJsonp from 'vue-jsonp'
 
 Vue.config.productionTip = false;
 Vue.use(VueJsonp);
-Vue.prototype.Url = 'http://wanfu.h5sina.com/';
+Vue.prototype.Url = 'http://127.0.0.1/';
 
 
 new Vue({

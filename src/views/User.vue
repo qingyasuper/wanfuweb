@@ -9,11 +9,11 @@
                 <span class="user_num" style="color:red;">剩余：{{user.num}}次   <a href="javascript:void();" style="margin-left: 50px; color:#1dace5; font-size: 30px;" @click="out">重新登录</a></span>
             </p>
             <p style="height: 40px; line-height: 40px;font-size: 30px;display: block">晚辅：
-            <b v-show="user.z1">周一</b>
-            <b v-show="user.z2">、周二</b>
-            <b v-show="user.z3">、周三</b>
-            <b v-show="user.z4">、周四</b>
-            <b v-show="user.z5">、周五</b>
+            <b v-show="user.z1===0">周一</b>
+            <b v-show="user.z2===0">、周二</b>
+            <b v-show="user.z3===0">、周三</b>
+            <b v-show="user.z4===0">、周四</b>
+            <b v-show="user.z5===0">、周五</b>
             </p>
         </div>
         <div class="conter">
