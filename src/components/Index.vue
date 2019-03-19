@@ -21,11 +21,11 @@
         methods:{
             checkLogin(){
                 let that = this;
-                that.$jsonp(that.Url +"wanfu/login/list").then(function (res) {
+                that.$jsonp(that.Url +"wanfu/login").then(function (res) {
                     console.log(res.detail);
                     if(res.detail==="登录成功"){
                         that.list = res.list;
-                        that.$router.push('/user')
+                        that.$router.push('/'+res.url);
                     }else{
                         that.$router.push('/login')
                     }

@@ -2,12 +2,13 @@
     <div id="Index">
         <div class="top">
             <ul>
-                <a href="javascript:void(0);"  @click="checkLogin(0)"><li>全部</li></a>
-                <a href="javascript:void(0);"  @click="checkLogin(1)"><li>九教室</li></a>
-                <a href="javascript:void(0);"  @click="checkLogin(2)"><li>十教室</li></a>
-                <a href="javascript:void(0);"  @click="checkLogin(3)"><li>关闭</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(0)" ><li v-bind:class="{li:t===0}">全部</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(1)" ><li v-bind:class="{li:t===1}">九教室</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(2)" ><li v-bind:class="{li:t===2}">十教室</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(3)" ><li v-bind:class="{li:t===3}">关闭</li></a>
                 <a href="javascript:void(0);" @click="openAdd"><li>新增</li></a>
             </ul>
+            <p> 晚辅：{{yingdao}}人 签到：{{shidao}}人  就餐：{{jiucan}}人   </p>
         </div>
         <div class="main">
             <table>
@@ -38,7 +39,7 @@
                     <td>{{item.num}}</td>
                     <td class="jiao"  @click="openClass(item.id,item.username)">{{item.jiaoshi}}</td>
                     <td>
-                        <input v-show="item.qiandao===0" type="button" class="qian" value="未签到" @click="qian(item.id)">
+                        <input v-show="item.qiandao===0" type="button" class="qian" value="未签到" @click="qian(item.id,item.jiaoshi)">
                         <input v-show="item.qiandao===1" type="button" class="wei red" value="已签到" @click="qiandel(item.id)">
                     </td>
                 </tr>
@@ -100,6 +101,9 @@
                 classname:"",
                 num:0,
                 money:0,
+                yingdao:0,
+                shidao:0,
+                jiucan:0,
             }
         },
         mounted(){
@@ -113,12 +117,16 @@
                 that.t  =t;
 
                 console.log(that.t);
-                that.$jsonp(that.Url +"wanfu/login/list", {
+                that.$jsonp(that.Url +"wanfu/login/listinfo", {
                     t: that.t
                 }).then(function (res) {
                     console.log(res.detail);
                     if(res.detail==="登录成功"){
                         that.list = res.list;
+                        that.yingdao=res.yingdao;
+                        that.shidao=res.shidao;
+                        that.jiucan=res.jiucan;
+                       // that.t=res.t;
                     }else{
                         that.$router.push('/login')
                     }
@@ -134,6 +142,11 @@
             },
             addKe(){  //增加课时
                 let that = this;
+                if( that.num===0 || that.money===0){
+                    alert("不能为0");
+                    that.divA =that.divB =that.divC =false;
+                    return
+                }
                 that.$jsonp(that.Url +"wanfu/index/xu", {
                     userid:that.id,
                     username:that.username,
@@ -153,6 +166,11 @@
                 let that = this;
                 that.divC =true;
                 that.username =username;
+                if(that.username==="" || that.tel==="" || that.classname===""){
+                    alert("不能为空");
+                    that.divA =that.divB =that.divC =false;
+                    return
+                }
                 that.$jsonp(that.Url +"wanfu/index/add", {
                     username:username,
                     tel:tel,
@@ -198,10 +216,11 @@
                 let that = this;
                 that.divA = that.divB = that.divC =false;
             },
-            qian(id){
+            qian(id,jiaoshi){
                 let that = this;
                 that.$jsonp(that.Url +"wanfu/index/qian", {
-                    id:id
+                    id:id,
+                    jiaoshi:jiaoshi
                 }).then(function (res) {
                     if(res.detail==="签到成功"){
                         console.log(res.detail);
