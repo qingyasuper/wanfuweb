@@ -6,7 +6,9 @@
                 <a href="javascript:void(0);"  @click="checkLogin(1)" ><li v-bind:class="{li:t===1}">九教室</li></a>
                 <a href="javascript:void(0);"  @click="checkLogin(2)" ><li v-bind:class="{li:t===2}">十教室</li></a>
                 <a href="javascript:void(0);"  @click="checkLogin(3)" ><li v-bind:class="{li:t===3}">关闭</li></a>
+                <a href="pay" v-show="t===2"><li>财务</li></a>
                 <a href="javascript:void(0);" @click="openAdd"><li>新增</li></a>
+                <a href="javascript:void(0);" @click="out"><li>退出</li></a>
             </ul>
             <p> 晚辅：{{yingdao}}人 签到：{{shidao}}人  就餐：{{jiucan}}人   </p>
         </div>
@@ -35,7 +37,7 @@
 
                     <td>{{item.classname}}
                     </td>
-                    <td><a href="tel:{$vo.tel}">拨打</a> <b v-if="item.can==0">餐</b></td>
+                    <td><a :href="'tel:' + item.tel">拨打</a> <b v-if="item.can==0">餐</b></td>
                     <td>{{item.num}}</td>
                     <td class="jiao"  @click="openClass(item.id,item.username)">{{item.jiaoshi}}</td>
                     <td>
@@ -120,7 +122,6 @@
                 that.$jsonp(that.Url +"wanfu/login/listinfo", {
                     t: that.t
                 }).then(function (res) {
-                    console.log(res.detail);
                     if(res.detail==="登录成功"){
                         that.list = res.list;
                         that.yingdao=res.yingdao;
@@ -244,7 +245,16 @@
                        // that.$router.push('/login')
                     }
                 });
-            }
+            },
+            out(){
+                let that = this;
+                that.$jsonp(that.Url+"wanfu/login/out")
+                    .then(function (res) {
+                        if(res.detail === "退出成功") {
+                            that.$router.push('/login');
+                        }
+                    });
+            },
         }
     };
 </script>

@@ -6,8 +6,8 @@ import './registerServiceWorker';
 import '../static/css/base.css';
 import '../static/css/index.css';
 import '../static/js/common.js';
-import VueJsonp from 'vue-jsonp'
-
+import VueJsonp from 'vue-jsonp';
+Vue.config.devtools = true;
 Vue.config.productionTip = false;
 Vue.use(VueJsonp);
 Vue.prototype.Url = 'http://127.0.0.1/';

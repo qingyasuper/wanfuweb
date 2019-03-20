@@ -4,7 +4,7 @@
             <ul>
                 <li style="width: 200px;">金额：{{yue}}元</li>
                 <li>记录：{{jilu}}</li>
-                <li><a href="#">返回</a> </li>
+                <a href="admin"> <li>返回</li></a>
             </ul>
             <p>
                 总收入：{{shouru}}元      开支：{{kaizhi}}元
@@ -54,10 +54,14 @@
         methods: {
             checkLogin(t) {
                 let that = this;
-
-                console.log(that.t);
                 that.$jsonp(that.Url + "wanfu/login/paylist").then(function (res) {
-                    console.log(res.detail);
+                   // console.log(res.type);
+                    if(res.type===1){
+                        return that.$router.push('/admin');
+                    }
+                    if(res.type===0){
+                        return that.$router.push('/user');
+                    }
                     if (res.detail === "登录成功") {
                         that.list = res.data;
                         that.shouru = res.shouru;
@@ -66,7 +70,7 @@
                         that.kaizhi = res.kaizhi;
                         // that.t=res.t;
                     } else {
-                        that.$router.push('/pay')
+                        return that.$router.push('/pay')
                     }
                 });
 

@@ -38,8 +38,7 @@
                 }).then(function (res) {
                     alert(res.detail);
                     if(res.detail==="登录成功"){
-
-                        that.$router.push('/'+res.url);
+                    return that.$router.push('/'+res.url);
                     }
                 });
             },
