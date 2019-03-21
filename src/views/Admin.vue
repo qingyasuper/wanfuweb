@@ -6,8 +6,8 @@
                 <a href="javascript:void(0);"  @click="checkLogin(1)" ><li v-bind:class="{li:t===1}">九教室</li></a>
                 <a href="javascript:void(0);"  @click="checkLogin(2)" ><li v-bind:class="{li:t===2}">十教室</li></a>
                 <a href="javascript:void(0);"  @click="checkLogin(3)" ><li v-bind:class="{li:t===3}">关闭</li></a>
-                <a href="pay" v-show="t===2"><li>财务</li></a>
-                <a href="javascript:void(0);" @click="openAdd"><li>新增</li></a>
+                <a href="javascript:void(0);" v-show="type===2" @click="pay"><li>财务</li></a>
+                <a href="javascript:void(0);" v-show="type===2"  @click="openAdd"><li>新增</li></a>
                 <a href="javascript:void(0);" @click="out"><li>退出</li></a>
             </ul>
             <p> 晚辅：{{yingdao}}人 签到：{{shidao}}人  就餐：{{jiucan}}人   </p>
@@ -106,6 +106,7 @@
                 yingdao:0,
                 shidao:0,
                 jiucan:0,
+                type:0,
             }
         },
         mounted(){
@@ -124,6 +125,7 @@
                 }).then(function (res) {
                     if(res.detail==="登录成功"){
                         that.list = res.list;
+                        that.type = res.type;
                         that.yingdao=res.yingdao;
                         that.shidao=res.shidao;
                         that.jiucan=res.jiucan;
@@ -136,6 +138,9 @@
             },
             add(id,usermane){  //打开增加课时
                 let that = this;
+                if(that.type<2){
+                    return false;
+                }
                 that.divC =true;
                 that.id =id;
                 that.username =usermane;
@@ -198,7 +203,7 @@
                 that.id =id;
             },
             editClass(jiaoshi){
-                console.log(jiaoshi);
+               // console.log(jiaoshi);
                 let that = this;
                 that.$jsonp(that.Url +"wanfu/index/jiao", {
                     id:that.id,
@@ -238,7 +243,7 @@
                     id:id
                 }).then(function (res) {
                     if(res.detail==="签到成功"){
-                        console.log(res.detail);
+                       // console.log(res.detail);
                         that.checkLogin(that.t);
                         //that.list = res.list;
                     }else{
@@ -254,6 +259,11 @@
                             that.$router.push('/login');
                         }
                     });
+            },
+            pay(){
+                let that = this;
+                            that.$router.push('/pay');
+
             },
         }
     };

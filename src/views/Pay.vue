@@ -4,7 +4,7 @@
             <ul>
                 <li style="width: 200px;">金额：{{yue}}元</li>
                 <li>记录：{{jilu}}</li>
-                <a href="admin"> <li>返回</li></a>
+                <a href="javascript:void(0);" @click="fanhui"> <li>返回</li></a>
             </ul>
             <p>
                 总收入：{{shouru}}元      开支：{{kaizhi}}元
@@ -75,6 +75,10 @@
                 });
 
             },
+            fanhui(){
+                let that = this;
+                return that.$router.push('/admin')
+            }
         }
     }
 </script>

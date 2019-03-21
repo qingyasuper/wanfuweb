@@ -20,11 +20,13 @@
             <table>
                 <tr style="background: #ddd">
                     <td>序号</td>
+                    <td>教室</td>
                     <td>签到记录</td>
                     <!--<td>晚辅情况</td>-->
                 </tr>
                 <tr v-for="(item,index) in list">
                     <td>{{index+1}}</td>
+                    <td>{{item.jiaoshi}}</td>
                     <td>{{item.datetime}}</td>
                 </tr>
 
