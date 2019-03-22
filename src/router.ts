@@ -7,8 +7,10 @@ import Admin from './views/Admin.vue';
 import Pay from './views/Pay.vue';
 Vue.use(Router);
 
+Vue.config.devtools = true;
+
 export default new Router({
- // mode: 'history',
+  //mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {

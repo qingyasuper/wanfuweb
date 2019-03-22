@@ -19,6 +19,7 @@
                     <td>姓名</td>
                     <td>班级</td>
                     <td>电话</td>
+                    <td>积分</td>
                     <td>课次</td>
                     <td>教室</td>
                     <td>签到情况</td>
@@ -38,6 +39,7 @@
                     <td>{{item.classname}}
                     </td>
                     <td><a :href="'tel:' + item.tel">拨打</a> <b v-if="item.can==0">餐</b></td>
+                    <td @click="jf(item.id,item.username)">{{item.jifen}}</td>
                     <td>{{item.num}}</td>
                     <td class="jiao"  @click="openClass(item.id,item.username)">{{item.jiaoshi}}</td>
                     <td>
@@ -83,6 +85,17 @@
                 <li style="border: none"><a href="javascript:void(0);" class="but_xu" @click="addKe()">提交</a> <a href="javascript:void(0);" class="close"  @click="close">关闭</a> </li>
             </ul>
         </div>
+
+        <div class="f_div_user" v-show="divD" style="height: 600px;">
+            <ul>
+                <li><span>姓名：</span><span class="u">{{username}}</span></li>
+                <li><span>课内：</span><input type="number" value="0" class="xu_ke" v-model="kn"></li>
+                <li><span>课外：</span><input type="number" value="0" class="xu_jin" v-model="kw"></li>
+                <li><span>每日：</span><input type="number" value="0" class="xu_jin" v-model="mr"></li>
+                <li><span>额外：</span><input type="number" value="0" class="xu_jin" v-model="ew"></li>
+                <li style="border: none"><a href="javascript:void(0);" class="but_xu" @click="addjf()">提交</a> <a href="javascript:void(0);" class="close"  @click="close">关闭</a> </li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -98,6 +111,7 @@
                 divA:false,
                 divB:false,
                 divC:false,
+                divD:false,
                 username:'',
                 t:0,
                 classname:"",
@@ -107,6 +121,10 @@
                 shidao:0,
                 jiucan:0,
                 type:0,
+                kn:10,
+                kw:5,
+                mr:5,
+                ew:0,
             }
         },
         mounted(){
@@ -135,6 +153,32 @@
                     }
                 });
 
+            },
+            jf(id,usermane){  //打开积分
+                let that = this;
+                that.divD =true;
+                that.id =id;
+                that.username =usermane;
+            },
+            addjf(){  //增加积分
+                let that = this;
+
+                that.$jsonp(that.Url +"wanfu/login/jifen", {
+                    userid:that.id,
+                    kn:that.kn,
+                    kw:that.kw,
+                    mr:that.mr,
+                    ew:that.ew
+                }).then(function (res) {
+                    if(res.detail==="增加积分成功"){
+
+                        that.checkLogin(that.t);
+                        //that.list = res.list;
+                    }else{
+                       alert(res.detail);
+                    }
+                    that.divA =that.divB =that.divC =that.divD =false;
+                });
             },
             add(id,usermane){  //打开增加课时
                 let that = this;
@@ -220,7 +264,7 @@
             },
             close(){
                 let that = this;
-                that.divA = that.divB = that.divC =false;
+                that.divA = that.divB = that.divC =that.divD =false;
             },
             qian(id,jiaoshi){
                 let that = this;
