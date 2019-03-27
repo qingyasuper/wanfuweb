@@ -26,7 +26,7 @@
                 </tr>
 
                 <tr v-for="(item,index) in list">
-                    <td>{{index+1}}</td>
+                    <td @click="jia(item.id)">{{index+1}}</td>
                     <td class="xufei" @click="add(item.id,item.username)">{{item.username}}
                         <b v-show="item.z1===1">1</b>
                         <b v-show="item.z2===1">2</b>
@@ -45,6 +45,7 @@
                     <td>
                         <input v-show="item.qiandao===0" type="button" class="qian" value="未签到" @click="qian(item.id,item.jiaoshi)">
                         <input v-show="item.qiandao===1" type="button" class="wei red" value="已签到" @click="qiandel(item.id)">
+                        <input v-show="item.qiandao===2" type="button" class="wei red" value="请假"  @click="jiadel(item.id)">
                     </td>
                 </tr>
 
@@ -266,6 +267,34 @@
                 let that = this;
                 that.divA = that.divB = that.divC =that.divD =false;
             },
+            jia(id){
+                let that = this;
+                that.$jsonp(that.Url +"wanfu/index/jia", {
+                    id:id
+                }).then(function (res) {
+                    if(res.detail==="请假成功"){
+                        console.log(res.detail);
+                        that.checkLogin(that.t);
+                        //that.list = res.list;
+                    }else{
+                       // that.$router.push('/login')
+                    }
+                });
+            },
+        jiadel(id){
+            let that = this;
+            that.$jsonp(that.Url +"wanfu/index/jiadel", {
+                id:id
+            }).then(function (res) {
+                if(res.detail==="请假删除成功"){
+                    // console.log(res.detail);
+                    that.checkLogin(that.t);
+                    //that.list = res.list;
+                }else{
+                    // that.$router.push('/login')
+                }
+            });
+        },
             qian(id,jiaoshi){
                 let that = this;
                 that.$jsonp(that.Url +"wanfu/index/qian", {

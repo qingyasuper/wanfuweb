@@ -33,7 +33,7 @@
                     <td>签到记录</td>
                     <!--<td>晚辅情况</td>-->
                 </tr>
-                <tr v-for="(item,index) in list">
+                <tr v-for="(item,index) in list"  v-bind:class="{li:item.jiaoshi==='请假'}">
                     <td>{{index+1}}</td>
                     <td>{{item.jiaoshi}}</td>
                     <td>{{item.kn}}</td>
@@ -48,6 +48,9 @@
     </div>
 
 </template>
+<style>
+    .li { color:red;}
+</style>
 
 <script>
     export default {
