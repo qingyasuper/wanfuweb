@@ -45,7 +45,7 @@
                     <td>
                         <input v-show="item.qiandao===0" type="button" class="qian" value="未签到" @click="qian(item.id,item.jiaoshi)">
                         <input v-show="item.qiandao===1" type="button" class="wei red" value="已签到" @click="qiandel(item.id)">
-                        <input v-show="item.qiandao===2" type="button" class="wei red" value="请假"  @click="jiadel(item.id)">
+                        <input v-show="item.qiandao===2" type="button" class="wei lanse" value="请假"  @click="jiadel(item.id)">
                     </td>
                 </tr>
 
@@ -100,6 +100,9 @@
     </div>
 </template>
 
+<style scoped>
+    .lanse { background: #0c199c;color:#fff}
+</style>
 <script>
     export default {
         name: 'Index',
