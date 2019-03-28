@@ -45,11 +45,14 @@
 
             </table>
         </div>
+        <a href="#" class="jia">当日请假</a>
     </div>
 
 </template>
 <style>
+
     .li { color:red;}
+    .jia { position: fixed; width: 100%; height: 80px; display: block; background: red; color:#fff}
 </style>
 
 <script>
