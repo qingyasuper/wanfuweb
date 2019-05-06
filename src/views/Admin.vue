@@ -6,6 +6,7 @@
                 <a href="javascript:void(0);"  @click="checkLogin(1)" ><li v-bind:class="{li:t===1}">九教室</li></a>
                 <a href="javascript:void(0);"  @click="checkLogin(2)" ><li v-bind:class="{li:t===2}">十教室</li></a>
                 <a href="javascript:void(0);"  @click="checkLogin(3)" ><li v-bind:class="{li:t===3}">关闭</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(4)" ><li v-bind:class="{li:t===4}">老师</li></a>
                 <a href="javascript:void(0);" v-show="type===2" @click="pay"><li>财务</li></a>
                 <a href="javascript:void(0);" v-show="type===2"  @click="openAdd"><li>新增</li></a>
                 <a href="javascript:void(0);" @click="out"><li>退出</li></a>

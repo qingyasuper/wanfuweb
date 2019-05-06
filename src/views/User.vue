@@ -76,7 +76,7 @@
                     password: that.tel
                 }).then(function (res) {
                     console.log(res.detail);
-                    if(res.detail==="登录成功"){
+                    if(res.detail=== "登录成功"){
                         that.list = res.list;
                         that.user = res.user;
                     }else{

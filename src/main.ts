@@ -12,7 +12,6 @@ Vue.config.productionTip = false;
 Vue.use(VueJsonp);
 Vue.prototype.Url = 'http://wanfu.h5sina.com/';
 
-
 new Vue({
   router,
   store,
