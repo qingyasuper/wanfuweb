@@ -44,9 +44,9 @@
                     <td>{{item.num}}</td>
                     <td class="jiao"  @click="openClass(item.id,item.username)">{{item.jiaoshi}}</td>
                     <td>
-                        <input v-show="item.qiandao===0" type="button" class="qian" value="未签到" @click="qian(item.id,item.jiaoshi)">
-                        <input v-show="item.qiandao===1" type="button" class="wei red" value="已签到" @click="qiandel(item.id)">
-                        <input v-show="item.qiandao===2" type="button" class="wei red" value="请假"  @click="jiadel(item.id)">
+                        <a v-show="item.qiandao===0" type="button" class="qian"  @click="qian(item.id,item.jiaoshi)">未签到</a>
+                        <a v-show="item.qiandao===1" type="button" class="wei red"  @click="qiandel(item.id)">已签到</a>
+                        <a v-show="item.qiandao===2" type="button" class="wei qing"  @click="jiadel(item.id)">请假</a>
                     </td>
                 </tr>
 

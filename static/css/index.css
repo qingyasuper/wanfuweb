@@ -2,8 +2,9 @@
 .main ul li { width: 80%; margin-left: 10%; height: 60px; line-height: 60px;}
 table,td { border: 1px solid #ddd}
 .main table { font-size: 20px; line-height: 60px; width: 100%; text-align: center;}
-.main input { padding: 3px;  border: 1px solid #000000}
-.main input.red { background: red; padding: 3px; color:#fff; border: 1px solid red}
+.main a { padding: 3px;  border: 1px solid #000000}
+.main a.red { background: red; padding: 3px; color:#fff; border: 1px solid red}
+.main a.qing { background: #0a6ebd; padding: 3px; color:#fff; border: 1px solid #0a6ebd}
 .f_div {position:  fixed;left:50%;top: 200px;width: 400px;margin-left: -200px;margin-top: -50px;height: 180px;border: 1px solid red;background: #fff;}
 .f_div ul li {width: 100px;height: 40px;line-height: 40px;float: left;border: 1px solid red;background: red;margin: 10px;color: #fff;font-size: 24px;text-align: center;}
 .f_div ul {margin: 20px 13px;}
