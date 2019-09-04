@@ -3,10 +3,12 @@
         <div class="top">
             <ul>
                 <a href="javascript:void(0);"  @click="checkLogin(0)" ><li v-bind:class="{li:t===0}">全部</li></a>
-                <a href="javascript:void(0);"  @click="checkLogin(1)" ><li v-bind:class="{li:t===1}">九教室</li></a>
-                <a href="javascript:void(0);"  @click="checkLogin(2)" ><li v-bind:class="{li:t===2}">十教室</li></a>
-                <a href="javascript:void(0);"  @click="checkLogin(3)" ><li v-bind:class="{li:t===3}">关闭</li></a>
-                <a href="javascript:void(0);"  @click="checkLogin(4)" ><li v-bind:class="{li:t===4}">老师</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(1)" ><li v-bind:class="{li:t===1}">八教室</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(2)" ><li v-bind:class="{li:t===2}">九教室</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(3)" ><li v-bind:class="{li:t===3}">十教室</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(4)" ><li v-bind:class="{li:t===4}">十一教室</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(5)" ><li v-bind:class="{li:t===5}">关闭</li></a>
+                <a href="javascript:void(0);"  @click="checkLogin(6)" ><li v-bind:class="{li:t===6}">老师</li></a>
                 <a href="javascript:void(0);" v-show="type===2" @click="pay"><li>财务</li></a>
                 <a href="javascript:void(0);" v-show="type===2"  @click="openAdd"><li>新增</li></a>
                 <a href="javascript:void(0);" @click="out"><li>退出</li></a>
@@ -56,8 +58,10 @@
         <div class="f_div" style="height: 260px;" v-show="divB">
             <span></span>
             <ul>
+                <li @click="editClass('八教室')">八教室</li>
                 <li @click="editClass('九教室')">九教室</li>
                 <li @click="editClass('十教室')">十教室</li>
+                <li @click="editClass('十一教室')">十一教室</li>
                 <li @click="editClass('关闭')">关闭</li>
                 <p style="
     font-size: 30px;
